@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-
+import HenkiloLista from './components/HenkiloLista'
+import Suodatin from './components/Suodatin'
+import TallennaUusi from './components/TallennaUusi'
 
 const App = () => {
   const [ persons, setPersons] = useState([
@@ -13,9 +15,6 @@ const App = () => {
     ? persons
     : persons.filter(person => person.name.toUpperCase().includes(filterBy.toUpperCase()))
   
-  const showPersons = () => personsToShow.map(person =>
-    <p key={person.name}>{person.name} {person.number}</p>
-  )
   
   const handleNewName = (event) => {
     
@@ -40,6 +39,8 @@ const App = () => {
     });
     if (already === undefined){
       setPersons(persons.concat(person));
+      setNewName("");
+      setNewNumber("");
     } else {
       alert(`${newName} löytyy jo luettelosta`)
     }
@@ -49,25 +50,13 @@ const App = () => {
   return (
     <div>
       <h2>Puhelinluettelo</h2>
-      <div>Rajaa näytettäviä: <input value={filterBy} onChange={handleFilter} />
-      </div>
+      <Suodatin value = {filterBy} onChange={handleFilter}/>
+      
       <h3>Tallenna uusi kontakti</h3>
-      <form onSubmit={savePerson}>
-        <div>
-          nimi: <input value={newName}
-          onChange={handleNewName}/>
-        </div>
-        <div>
-          numero: <input value={newNumber} 
-          onChange={handleNewNumber}/>
-        </div>
-        <div>
-          <button type="submit">lisää</button>
-        </div>
-      </form>
-      <div>debug: {newName}</div>
+      <TallennaUusi onSubmit={savePerson} nameValue={newName} nameOnChange={handleNewName} numberValue={newNumber} numberOnChange={handleNewNumber} />
+      
       <h2>Numerot</h2>
-      {showPersons()}
+      <HenkiloLista persons={personsToShow}/>
     </div>
   )
 
