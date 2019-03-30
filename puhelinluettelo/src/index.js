@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios'
+
+const promise = axios.get('https://fullstack-part-2-ruja.c9users.io:3001/notes')
+console.log(promise)
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
