@@ -26,11 +26,12 @@ const App = () => {
   
     const Ilmoitus = ({ tieto }) => {
       const ilmoitusStyle = {
-        color: 'green',
-        fontStyle: 'italic',
-        borderStyle: 'solid',
+        backgroundColor: 'green',
+        color: 'white',
+        fontStyle: 'bold',
+        fontSize: 15,
         borderRadius: 5,
-        padding: 10,
+        padding: 15,
         marginBottom: 10
       }
 
